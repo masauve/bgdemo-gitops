@@ -10,3 +10,11 @@ resources:
   - 100-deployment.yaml
   - 200-service.yaml
   - 300-route.yaml
+
+patchesJson6902:
+  - target:
+      group: rbac.authorization.k8s.io
+      version: v1
+      kind: RoleBinding
+      name: cicd-image-puller
+    path: cicd-image-puller-rolebinding-patch.yaml
