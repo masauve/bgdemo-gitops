@@ -101,16 +101,13 @@ spec:
          value: oc tag $(params.IMAGE) bgdemo-service:dev
   - name: rollout-dev
     taskRef:
-      name: rollout-restart
-      kind: Task
-      runAfter:
-        - tag-dev
-      params:
-        - name: APP_NAME
-          value: "$(params.app-name)"
-        - name: NAMESPACE
-          value: "petclinic-dev"
-
+     name: openshift-client
+     kind: ClusterTask
+    runAfter:
+      - tag-dev
+    params:
+       - name: SCRIPT
+         value: oc rollout restart deployment bgdemo-service -n dev
   workspaces:
   - description: This workspace will receive the cloned git repo.
     name: shared-data
