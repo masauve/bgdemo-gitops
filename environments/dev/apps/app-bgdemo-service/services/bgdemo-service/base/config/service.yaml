@@ -14,7 +14,7 @@ metadata:
     app.openshift.io/runtime: php
     app.openshift.io/runtime-version: 7.4-ubi8
   name: bgdemo
-  namespace: secdemo
+  namespace: dev
 spec:
   clusterIP: 172.30.195.146
   clusterIPs:

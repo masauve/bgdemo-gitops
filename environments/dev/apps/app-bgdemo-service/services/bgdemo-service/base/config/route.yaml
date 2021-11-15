@@ -13,7 +13,7 @@ metadata:
     app.openshift.io/runtime-version: 7.4-ubi8
     zone: low
   name: bgdemo
-  namespace: secdemo
+  namespace: dev
 spec:
   host: bgdemo-secdemo.apps.ocp.myocp.net
   port:

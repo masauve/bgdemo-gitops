@@ -8,4 +8,4 @@ metadata:
   labels:
     kubernetes.io/metadata.name: secdemo
     openshift-pipelines.tekton.dev/namespace-reconcile-version: v1.5
-  name: secdemo
+  name: dev
