@@ -98,7 +98,7 @@ spec:
       - build-image
     params:
        - name: SCRIPT
-         value: oc tag $(params.IMAGE):$(params.GIT_REF)-$(params.COMMIT_SHA) image-registry.openshift-image-registry.svc:5000/cicd/bgdemo-service:dev
+         value: oc tag $(params.IMAGE) image-registry.openshift-image-registry.svc:5000/cicd/bgdemo-service:dev
   workspaces:
   - description: This workspace will receive the cloned git repo.
     name: shared-data
