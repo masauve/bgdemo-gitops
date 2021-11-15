@@ -97,8 +97,8 @@ spec:
     runAfter:
       - build-image
     params:
-       - name: ARGS
-         value: ["tag", "$(params.IMAGE)", "$(params.IMAGE):dev"]
+       - name: SCRIPT
+         value: oc tag $(params.IMAGE):$(params.GIT_REF)-$(params.COMMIT_SHA) $(params.IMAGE):dev)
   workspaces:
   - description: This workspace will receive the cloned git repo.
     name: shared-data
