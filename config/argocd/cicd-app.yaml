@@ -37,6 +37,9 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - ApplyOutOfSyncOnly=true
+
 status:
   health: {}
   summary: {}
