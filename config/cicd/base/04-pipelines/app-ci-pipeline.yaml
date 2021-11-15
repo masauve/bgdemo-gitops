@@ -90,6 +90,15 @@ spec:
     workspaces:
     - name: source
       workspace: shared-data
+  - name: tag-dev
+    taskRef:
+     name: openshift-client
+     kind: ClusterTask
+    runAfter:
+      - build-image
+    params:
+       - name: ARGS
+         value: ["tag", "$(params.IMAGE)", "$(params.IMAGE):dev"]
   workspaces:
   - description: This workspace will receive the cloned git repo.
     name: shared-data
