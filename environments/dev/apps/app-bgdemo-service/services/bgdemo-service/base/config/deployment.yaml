@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    alpha.image.policy.openshift.io/resolve-names: '*'
+    app.openshift.io/vcs-ref: ""
+    app.openshift.io/vcs-uri: https://github.com/masauve/bgdemo
+    deployment.kubernetes.io/revision: "2"
+    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"bgdemo:latest","namespace":"secdemo"},"fieldPath":"spec.template.spec.containers[?(@.name==\"bgdemo\")].image","pause":"false"}]'
+    openshift.io/generated-by: OpenShiftWebConsole
+  labels:
+    app: bgdemo
+    app.kubernetes.io/component: bgdemo
+    app.kubernetes.io/instance: bgdemo
+    app.kubernetes.io/name: bgdemo
+    app.kubernetes.io/part-of: bgdemo-app
+    app.openshift.io/runtime: php
+    app.openshift.io/runtime-version: 7.4-ubi8
+  name: bgdemo
+  namespace: secdemo
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: bgdemo
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: bgdemo
+        deploymentconfig: bgdemo
+    spec:
+      containers:
+      - image: image-registry.openshift-image-registry.svc:5000/secdemo/bgdemo@sha256:17a75e6b798514879d5691c3108d1a4ade0510df1d70dc998ac6a4052bff1765
+        imagePullPolicy: Always
+        name: bgdemo
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8443
+          protocol: TCP
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30

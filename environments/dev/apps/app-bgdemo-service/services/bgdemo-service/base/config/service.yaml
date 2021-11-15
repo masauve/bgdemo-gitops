@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: ""
+    app.openshift.io/vcs-uri: https://github.com/masauve/bgdemo
+    openshift.io/generated-by: OpenShiftWebConsole
+  labels:
+    app: bgdemo
+    app.kubernetes.io/component: bgdemo
+    app.kubernetes.io/instance: bgdemo
+    app.kubernetes.io/name: bgdemo
+    app.kubernetes.io/part-of: bgdemo-app
+    app.openshift.io/runtime: php
+    app.openshift.io/runtime-version: 7.4-ubi8
+  name: bgdemo
+  namespace: secdemo
+spec:
+  clusterIP: 172.30.195.146
+  clusterIPs:
+  - 172.30.195.146
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: 8080-tcp
+    port: 8080
+  - name: 8443-tcp
+    port: 8443
+  selector:
+    app: bgdemo
+    deploymentconfig: bgdemo

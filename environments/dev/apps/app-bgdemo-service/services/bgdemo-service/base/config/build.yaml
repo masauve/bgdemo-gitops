@@ -1,0 +1,49 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: ""
+    app.openshift.io/vcs-uri: https://github.com/masauve/bgdemo
+    openshift.io/generated-by: OpenShiftWebConsole
+  labels:
+    app: bgdemo
+    app.kubernetes.io/component: bgdemo
+    app.kubernetes.io/instance: bgdemo
+    app.kubernetes.io/name: bgdemo
+    app.kubernetes.io/part-of: bgdemo-app
+    app.openshift.io/runtime: php
+    app.openshift.io/runtime-version: 7.4-ubi8
+  name: bgdemo
+  namespace: secdemo
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: bgdemo:latest
+  runPolicy: Serial
+  source:
+    contextDir: /app
+    git:
+      uri: https://github.com/masauve/bgdemo
+    type: Git
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: php:7.4-ubi8
+        namespace: openshift
+    type: Source
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - generic:
+      secretReference:
+        name: bgdemo-generic-webhook-secret
+    type: Generic
+  - github:
+      secretReference:
+        name: bgdemo-github-webhook-secret
+    type: GitHub
+  - type: ImageChange
+  - type: ConfigChange

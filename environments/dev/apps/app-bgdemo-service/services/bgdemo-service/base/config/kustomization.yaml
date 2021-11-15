@@ -1,4 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: secdemo
+
+commonAnnotations:
+  argocd.argoproj.io/sync-wave: "0"
+
 resources:
-- 100-deployment.yaml
-- 200-service.yaml
-- 300-route.yaml
+  - ns.yaml
+  - is.yaml
+  - build.yaml
+  - deployment.yaml
+  - service.yaml
+  - route.yaml

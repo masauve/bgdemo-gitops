@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    openshift.io/description: ""
+    openshift.io/display-name: ""
+    openshift.io/requester: msauve@redhat.com
+  labels:
+    kubernetes.io/metadata.name: secdemo
+    openshift-pipelines.tekton.dev/namespace-reconcile-version: v1.5
+  name: secdemo

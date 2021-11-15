@@ -1,0 +1,25 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    openshift.io/host.generated: "true"
+  labels:
+    app: bgdemo
+    app.kubernetes.io/component: bgdemo
+    app.kubernetes.io/instance: bgdemo
+    app.kubernetes.io/name: bgdemo
+    app.kubernetes.io/part-of: bgdemo-app
+    app.openshift.io/runtime: php
+    app.openshift.io/runtime-version: 7.4-ubi8
+    zone: low
+  name: bgdemo
+  namespace: secdemo
+spec:
+  host: bgdemo-secdemo.apps.ocp.myocp.net
+  port:
+    targetPort: 8080-tcp
+  to:
+    kind: Service
+    name: bgdemo
+    weight: 100
+  wildcardPolicy: None
