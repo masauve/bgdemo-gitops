@@ -38,7 +38,7 @@ spec:
         deploymentconfig: bgdemo
     spec:
       containers:
-      - image: image-registry.openshift-image-registry.svc:5000/secdemo/bgdemo@sha256:17a75e6b798514879d5691c3108d1a4ade0510df1d70dc998ac6a4052bff1765
+      - image: image-registry.openshift-image-registry.svc:5000/dev/bgdemo@sha256:17a75e6b798514879d5691c3108d1a4ade0510df1d70dc998ac6a4052bff1765
         imagePullPolicy: Always
         name: bgdemo
         ports:
