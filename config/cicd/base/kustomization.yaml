@@ -1,5 +1,6 @@
 resources:
 - 01-namespaces/cicd-environment.yaml
+- 02-rolebindings/dev-sa-cicd-binding.yaml
 - 02-rolebindings/internal-registry-cicd-binding.yaml
 - 02-rolebindings/pipeline-service-account.yaml
 - 02-rolebindings/pipeline-service-role.yaml
